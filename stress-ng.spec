@@ -1,16 +1,21 @@
 Summary:	Stress test a computer system in various ways
 Name:		stress-ng
-Version:	0.11.17
+Version:	0.13.10
 Release:	1
 License:	GPL v2+
 Group:		Applications
-Source0:	https://kernel.ubuntu.com/~cking/tarballs/stress-ng/%{name}-%{version}.tar.xz
-# Source0-md5:	7b89157c838f2bb4bdeba8f46e3c56ae
-URL:		https://kernel.ubuntu.com/~cking/stress-ng/
+Source0:	https://github.com/ColinIanKing/stress-ng/archive/refs/tags/V%{version}.tar.gz
+# Source0-md5:	273eddb86603875fc4d8a1efb99b8329
+URL:		https://github.com/ColinIanKing/stress-ng/
+BuildRequires:	apparmor-parser
+BuildRequires:	apparmor-profiles
+BuildRequires:	apparmor-profiles-abstractions
 BuildRequires:	attr-devel
 BuildRequires:	judy-devel
 BuildRequires:	keyutils-devel
+BuildRequires:	kmod-devel
 BuildRequires:	libaio-devel
+BuildRequires:	libapparmor-devel
 BuildRequires:	libatomic
 BuildRequires:	libbsd-devel
 BuildRequires:	libcap-devel
@@ -30,7 +35,8 @@ various operating system kernel interfaces.
 %build
 export CFLAGS="%{rpmcppflags} %{rpmcflags}"
 export LDFLAGS="%{rpmldflags}"
-%{__make}
+%{__make} \
+	VERBOSE=1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -46,6 +52,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README example-jobs
+%doc README.md example-jobs
 %attr(755,root,root) %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
