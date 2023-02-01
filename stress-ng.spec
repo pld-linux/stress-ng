@@ -1,7 +1,7 @@
 Summary:	Stress test a computer system in various ways
 Name:		stress-ng
 Version:	0.13.10
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications
 Source0:	https://github.com/ColinIanKing/stress-ng/archive/refs/tags/V%{version}.tar.gz
