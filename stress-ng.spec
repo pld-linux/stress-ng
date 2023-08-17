@@ -35,6 +35,7 @@ Summary(pl.UTF-8):      Bashowe dopełnianie parametrów dla stress-ng
 Group:          Applications/Shells
 Requires:       %{name} = %{version}-%{release}
 Requires:       bash-completion >= 2.0
+BuildArch:	noarch
 
 %description -n bash-completion-%{name}
 Bash completion for stress-ng.
