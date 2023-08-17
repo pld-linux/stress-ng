@@ -1,11 +1,11 @@
 Summary:	Stress test a computer system in various ways
 Name:		stress-ng
-Version:	0.13.10
-Release:	2
+Version:	0.16.04
+Release:	1
 License:	GPL v2+
 Group:		Applications
 Source0:	https://github.com/ColinIanKing/stress-ng/archive/refs/tags/V%{version}.tar.gz
-# Source0-md5:	273eddb86603875fc4d8a1efb99b8329
+# Source0-md5:	ee25a2cc526804fb305dc7b4c16a0b53
 URL:		https://github.com/ColinIanKing/stress-ng/
 BuildRequires:	apparmor-parser
 BuildRequires:	apparmor-profiles
@@ -28,6 +28,19 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Stress test a computer system in various ways. It was designed to
 exercise various physical subsystems of a computer as well as the
 various operating system kernel interfaces.
+
+%package -n bash-completion-%{name}
+Summary:        Bash completion for stress-ng
+Summary(pl.UTF-8):      Bashowe dopełnianie parametrów dla stress-ng
+Group:          Applications/Shells
+Requires:       %{name} = %{version}-%{release}
+Requires:       bash-completion >= 2.0
+
+%description -n bash-completion-%{name}
+Bash completion for stress-ng.
+
+%description -n bash-completion-%{name} -l pl.UTF-8
+Bashowe dopełnianie parametrów dla stress-ng.
 
 %prep
 %setup -q
@@ -55,3 +68,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md example-jobs
 %attr(755,root,root) %{_bindir}/%{name}
 %{_mandir}/man1/%{name}.1*
+
+%files -n bash-completion-%{name}
+%defattr(644,root,root,755)
+%{bash_compdir}/%{name}
